@@ -54,7 +54,7 @@ should be aware and followup on why.
       alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
     }
 
-### Console Signing Failure
+### Console Signin Failure
 
 Work in progress. Raise alerts when someone fails to log into your AWS console.
 
