@@ -47,7 +47,7 @@ You should not be using your root AWS account. If anyone does access it then you
 should be aware and followup on why.
 
     module "root-account-activity-alarm" {
-      source    = "aws-security-alarms/modules/root-account-activity"
+      source    = "terraform-aws-security-alarms/modules/root-account-activity"
       namespace = "unixdaemon"
 
       cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
@@ -59,7 +59,7 @@ should be aware and followup on why.
 Work in progress. Raise alerts when someone fails to log into your AWS console.
 
     module "console-signin-failure-alarm" {
-      source    = "aws-security-alarms/modules/console-signin-failure"
+      source    = "terraform-aws-security-alarms/modules/console-signin-failure"
       namespace = "unixdaemon"
 
       cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"

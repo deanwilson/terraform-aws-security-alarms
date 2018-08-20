@@ -8,7 +8,7 @@ module "cloudtrail" {
 
 # add the console signing alarm
 module "console-signin-failure-alarm" {
-  source    = "aws-security-alarms/modules/console-signin-failure"
+  source    = "terraform-aws-security-alarms/modules/console-signin-failure"
   namespace = "unixdaemon"
 
   cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
@@ -18,7 +18,7 @@ module "console-signin-failure-alarm" {
 # add the root account activity alarm. Note most of the
 # code is boilerplate
 module "root-account-activity-alarm" {
-  source    = "aws-security-alarms/modules/root-account-activity"
+  source    = "terraform-aws-security-alarms/modules/root-account-activity"
   namespace = "unixdaemon"
 
   cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
