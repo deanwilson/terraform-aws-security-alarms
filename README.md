@@ -54,6 +54,25 @@ should be aware and followup on why.
       alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
     }
 
+### Security Group Activity
+
+Security groups are one of the most important security related AWS resources and
+you should be explicitly aware of any changes made to them. This module adds an
+alarm that notifies on any events that modify, add, or remove them.
+
+    module "security-group-alarm" {
+      source    = "terraform-aws-security-alarms/modules/security-group-event"
+      namespace = "unixdaemon"
+
+      cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
+      alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
+    }
+
+The actual alarms raised from this module do not contain the explicit details
+of what changed. Instead you will need to look at your CloudTrail / CloudWatch
+Logs / AWS Config dashboards to pinpoint the actual change. Hopefully this can
+be improved in the future.
+
 ### Console Signin Failure
 
 Work in progress. Raise alerts when someone fails to log into your AWS console.
