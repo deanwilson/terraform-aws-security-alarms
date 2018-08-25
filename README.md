@@ -73,6 +73,19 @@ of what changed. Instead you will need to look at your CloudTrail / CloudWatch
 Logs / AWS Config dashboards to pinpoint the actual change. Hopefully this can
 be improved in the future.
 
+### CloudTrail Activity
+
+CloudTrail is the essential core of your AWS audit and security efforts. Every
+change made to it should be known and investigated.
+
+    module "cloudtrail-event-alarm" {
+      source    = "terraform-aws-security-alarms/modules/cloudtrail-event"
+      namespace = "unixdaemon"
+
+      cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
+      alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
+    }
+
 ### Console Signin Failure
 
 Work in progress. Raise alerts when someone fails to log into your AWS console.
