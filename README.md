@@ -86,6 +86,31 @@ change made to it should be known and investigated.
       alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
     }
 
+### Network ACL Activity
+
+Network ACLs are one of the lines of defence an attacker will seek to
+compromise. This alarm notifies you of any changes to them.
+
+    module "network-acl-event-alarm" {
+      source    = "terraform-aws-security-alarms/modules/network-acl-event"
+      namespace = "unixdaemon"
+
+      cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
+      alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
+    }
+
+### Unauthorised API Events
+
+Alarm on unauthorised API calls.
+
+    module "unauthorised-api-event-alarm" {
+      source    = "terraform-aws-security-alarms/modules/unauthorised-api-event"
+      namespace = "unixdaemon"
+
+      cloudtrail_log_group_name = "${module.cloudtrail.cloudtrail_log_group_name}"
+      alarm_actions             = ["${module.admin-sns-email-topic.arn}"]
+    }
+
 ### Console Signin Failure
 
 Work in progress. Raise alerts when someone fails to log into your AWS console.
